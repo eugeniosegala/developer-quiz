@@ -1,1 +1,1 @@
-# developer-quiz
+# devs-quiz
