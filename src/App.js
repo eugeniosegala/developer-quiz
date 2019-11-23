@@ -102,7 +102,7 @@ class App extends Component {
           <div className="game">
             <div className={status === 0 ? 'message message--state-default' : status === 1 ? "message message--state-success" : "message message--state-failure"}>
               {status === 0 &&
-                <span>What is it?</span>
+                <span>What is it???</span>
               }
               {status === 1 &&
                 <span>{success[this.baseRandom(0, 10)]}</span>
