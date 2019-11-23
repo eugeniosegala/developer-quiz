@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css?family=Carter+One&display=swap');
+
+body, html, #root {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Carter One', cursive;
+}
+
+.app {
+  height: 100%;
+}
+
+.game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.game__ending {
+  margin-top: 30px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.game__ending__score {
+  color: goldenrod;
+  font-size: 20px
+}
+
+.game__ending__retry {
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 25px
+}
+
+.message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  font-size: 25px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.message--state-default {
+  background-color: #2196F3;
+}
+
+.message--state-failure {
+  background-color: darkred;
+}
+
+.message--state-success {
+  background-color: darkgreen;
+}
+
+.random-image {
+  margin: 10px;
+}
+
+.random-image__element {
+  width: 100%;
+  max-width: 400px;
+}
+
+.input {
+  margin-top: 50px;
+  width: 100%;
+  max-width: 250px;
+  font-size: 26px;
+  border: 1px solid #70809078;
+  border-radius: 24px;
+  padding: 5px 15px;
+  text-transform:uppercase;
+}
+
+.input:focus {
+  box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
+  outline: 0;
+}
+
+.health {
+  position: fixed;
+  right: 20px;
+  bottom: 15px;
+}
+
+.health__life {
+  margin-left: 5px;
+}
