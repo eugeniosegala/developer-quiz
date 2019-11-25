@@ -65,7 +65,7 @@ const App = () => {
         ...data,
         ...sharedState,
         image: randomImage(),
-        status: 0,
+        status: 0
       });
 
       if (inputEl.current) {
@@ -110,19 +110,18 @@ const App = () => {
 
   return (
       <div className="app">
-        {logos.length !== 0 && data.lives !== 0 &&
+        {(data.status === 1 || data.status === -1) &&
+          <div className={ data.status === 1 ? "message message--state-success" : "message message--state-failure"} >
+            {data.status === 1 ? <span>{success[baseRandom(0, 10)]}</span> : <span>{failure[baseRandom(0, 5)]}</span>}
+          </div>
+        }
+        {(logos.length !== 0 && data.lives !== 0) &&
           <div className="game">
-            <div className={data.status === 0 ? 'message message--state-default' : data.status === 1 ? "message message--state-success" : "message message--state-failure"}>
-              {data.status === 0 &&
+            {data.status === 0 &&
+              <div className="message message--state-default">
                 <span>What is it?</span>
-              }
-              {data.status === 1 &&
-                <span>{success[baseRandom(0, 10)]}</span>
-              }
-              {data.status === -1 &&
-                <span>{failure[baseRandom(0, 5)]}</span>
-              }
-            </div>
+              </div>
+            }
             <div className="random-image">
               <LazyLoadImage
                   effect="blur"
@@ -146,7 +145,7 @@ const App = () => {
             />
           </div>
         }
-        {(logos.length === 0 || data.lives === 0 )&&
+        {(logos.length === 0 || data.lives === 0) &&
             <div className="game">
               <div className="random-image">
                 {logos.length === 0 ?
