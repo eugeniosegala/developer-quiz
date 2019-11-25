@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { logos } from './image';
 import { success, failure } from './message';
 import './App.css';
@@ -78,13 +79,13 @@ class App extends Component {
     let i = 0;
     let currentLives = [];
     for (i; i < this.state.life; i++) {
-      currentLives.push(<img key={ i } className="health__life" width="40px" src={Life} alt="life" />)
+      currentLives.push(<LazyLoadImage effect="blur" key={ i } className="health__life" width="40px" src={Life} alt="life" />)
     }
 
     let d = 0;
     let lostLives = [];
     for (d; d < Math.abs(this.state.life - 3); d++) {
-      lostLives.push(<img key={ d } className="health__life" style={{ opacity: "0.3" }} width="40px" src={Life} alt="life" />)
+      lostLives.push(<LazyLoadImage effect="blur" key={ d } className="health__life" style={{ opacity: "0.3" }} width="40px" src={Life} alt="life" />)
     }
 
     return [
@@ -112,7 +113,7 @@ class App extends Component {
               }
             </div>
             <div className="random-image">
-              <img alt="game" className="random-image__element" src={status === 1 ? image.main : image.placeholder} />
+              <LazyLoadImage effect="blur" alt="game" className="random-image__element" src={status === 1 ? image.main : image.placeholder} />
             </div>
             <input className="input" autoFocus type="text" onKeyDown={(e) => this.checkValue(e)} autoComplete="off" name="language"/>
           </div>
@@ -120,7 +121,7 @@ class App extends Component {
         {logos.length === 0 &&
             <div className="game">
               <div className="random-image">
-                <img className="random-image__element" src={Win} alt="win" />
+                <LazyLoadImage effect="blur" className="random-image__element" src={Win} alt="win" />
               </div>
               <div className="game__ending">
                 <p>Total points: <span className="game__ending__score">{points}</span></p>
@@ -132,7 +133,7 @@ class App extends Component {
         {life === 0 &&
           <div className="game">
             <div className="random-image">
-              <img className="random-image__element" src={gameOver} alt="Game Over" />
+              <LazyLoadImage effect="blur" className="random-image__element" src={gameOver} alt="Game Over" />
             </div>
             <div className="game__ending">
               <p>Total points: <span className="game__ending__score">{points}</span></p>
