@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+
 import { logos } from './image';
 import { success, failure } from './message';
 import './App.css';
@@ -8,59 +9,56 @@ import Win from './assets/win.gif';
 import gameOver from './assets/game-over.gif';
 import Life from './assets/life.png';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      image: {},
-      status: 0,
-      life: 3,
-      points: 0,
-      input: null,
-    }
-  }
+const baseRandom = (lower, upper) => {
+  const nativeFloor = Math.floor;
+  const nativeRandom = Math.random;
+  return lower + nativeFloor(nativeRandom() * (upper - lower + 1));
+};
 
-  baseRandom = (lower, upper) => {
-    const nativeFloor = Math.floor;
-    const nativeRandom = Math.random;
-    return lower + nativeFloor(nativeRandom() * (upper - lower + 1));
-  };
+const randomImage = () => {
+  return logos[baseRandom(0, logos.length - 1)];
+};
 
-  randomImage = () => {
-    return logos[this.baseRandom(0, logos.length - 1)];
-  };
+const App = () => {
 
-  componentDidMount() {
-    this.setState({
-      image: this.randomImage(),
-    })
-  }
+  const [data, setData] = useState({
+    image: logos[baseRandom(0, logos.length - 1)],
+    status: 0,
+    life: 3,
+    points: 0,
+    input: '',
+  });
 
-  nextStep(e, status) {
-    // reset the input
-    e.target.value = "";
+  const nextStep = (e, status) => {
+
+    const sharedState = {
+      life: status === -1 ? data.life - 1 : data.life,
+      input: '',
+      points: status === 1 ? data.points + 1 : data.points,
+    };
 
     // define correct or wrong answer
-    this.setState({
-      input: null,
+    setData({
+      ...data,
+      ...sharedState,
       status: status,
-      points: status === 1 ? this.state.points + 1 : this.state.points,
-      life: status === -1 ? this.state.life - 1 : this.state.life
     });
 
     // after one second generate another image
     setTimeout(() => {
       // delete the correct answer from the data bank
-      status === 1 && logos.splice(logos.findIndex(obj => obj.name === this.state.image.name), 1);
+      status === 1 && logos.splice(logos.findIndex(obj => obj.name === data.image.name), 1);
 
-      this.setState({
-        image: this.randomImage(),
+      setData({
+        ...data,
+        ...sharedState,
+        image: randomImage(),
         status: 0
       });
     }, 1000);
-  }
+  };
 
-  checkValue = (e) => {
+  const checkValue = (e) => {
     if (e.keyCode === 13) {
 
       if( navigator.userAgent.match(/Android/i)
@@ -73,24 +71,24 @@ class App extends Component {
         e.target.blur();
       }
 
-      if (this.state.input.toLowerCase().match(this.state.image.name, 'g')) {
-        this.nextStep(e, 1);
+      if (data.input.toLowerCase().match(data.image.name, 'g')) {
+        nextStep(e, 1);
       } else {
-        this.nextStep(e, -1);
+        nextStep(e, -1);
       }
     }
   };
 
-  lifeCounter = () => {
+  const lifeCounter = () => {
     let i = 0;
     let currentLives = [];
-    for (i; i < this.state.life; i++) {
+    for (i; i < data.life; i++) {
       currentLives.push(<img key={ i } className="health__life" width="40px" src={Life} alt="life" />)
     }
 
     let d = 0;
     let lostLives = [];
-    for (d; d < Math.abs(this.state.life - 3); d++) {
+    for (d; d < Math.abs(data.life - 3); d++) {
       lostLives.push(<img key={ d } className="health__life" style={{ opacity: "0.3" }} width="40px" src={Life} alt="life" />)
     }
 
@@ -100,34 +98,38 @@ class App extends Component {
     ];
   };
 
-  render() {
-    const { image, status, life, points } = this.state;
-
-    return (
+  return (
       <div className="app">
-        {logos.length !== 0 && life !== 0 &&
+        {logos.length !== 0 && data.life !== 0 &&
           <div className="game">
-            <div className={status === 0 ? 'message message--state-default' : status === 1 ? "message message--state-success" : "message message--state-failure"}>
-              {status === 0 &&
+            <div className={data.status === 0 ? 'message message--state-default' : data.status === 1 ? "message message--state-success" : "message message--state-failure"}>
+              {data.status === 0 &&
                 <span>What is it?</span>
               }
-              {status === 1 &&
-                <span>{success[this.baseRandom(0, 10)]}</span>
+              {data.status === 1 &&
+                <span>{success[baseRandom(0, 10)]}</span>
               }
-              {status === -1 &&
-                <span>{failure[this.baseRandom(0, 5)]}</span>
+              {data.status === -1 &&
+                <span>{failure[baseRandom(0, 5)]}</span>
               }
             </div>
             <div className="random-image">
-              <LazyLoadImage effect="blur" key={status === 1 ? image.main : image.placeholder} alt="game" className="random-image__element" src={status === 1 ? image.main : image.placeholder} />
+              <LazyLoadImage
+                  effect="blur"
+                  key={data.status === 1 ? data.image.main : data.image.placeholder}
+                  alt="programming language logo"
+                  className="random-image__element"
+                  src={data.status === 1 ? data.image.main : data.image.placeholder}
+              />
             </div>
             <input
                 className="input"
                 type="text"
-                onChange={(e) => this.setState({ input: e.target.value })}
-                onKeyDown={(e) => this.checkValue(e)}
+                onChange={(e) => setData({ ...data, input: e.target.value })}
+                onKeyDown={(e) => checkValue(e)}
                 autoComplete="off"
                 name="language"
+                value={ data.input }
                 autoFocus
             />
           </div>
@@ -138,30 +140,29 @@ class App extends Component {
                 <LazyLoadImage effect="blur" className="random-image__element" src={Win} alt="win" />
               </div>
               <div className="game__ending">
-                <p>Total points: <span className="game__ending__score">{points}</span></p>
-                <p>Remaining life: <span className="game__ending__score">{life}</span></p>
+                <p>Total points: <span className="game__ending__score">{data.points}</span></p>
+                <p>Remaining life: <span className="game__ending__score">{data.life}</span></p>
                 <p><span className="game__ending__retry" onClick={() => window.location.reload()}> Retry? </span></p>
               </div>
             </div>
         }
-        {life === 0 &&
+        {data.life === 0 &&
           <div className="game">
             <div className="random-image">
               <LazyLoadImage effect="blur" className="random-image__element" src={gameOver} alt="Game Over" />
             </div>
             <div className="game__ending">
-              <p>Total points: <span className="game__ending__score">{points}</span></p>
-              <p>Remaining life: <span className="game__ending__score">{life}</span></p>
+              <p>Total points: <span className="game__ending__score">{data.points}</span></p>
+              <p>Remaining life: <span className="game__ending__score">{data.life}</span></p>
               <p><span className="game__ending__retry" onClick={() => window.location.reload()}> Retry? </span></p>
             </div>
           </div>
         }
         <div className="health">
-          {this.lifeCounter()}
+          {lifeCounter()}
         </div>
       </div>
     );
-  }
-}
+};
 
 export default App;

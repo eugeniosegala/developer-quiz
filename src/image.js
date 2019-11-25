@@ -4,8 +4,6 @@ function importAll(r) {
 
 const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg)$/));
 
-console.log(images);
-
 export const logos = [
   {
     main: images[0],
