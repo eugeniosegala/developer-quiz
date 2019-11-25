@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { logos } from './image';
 import { success, failure } from './message';
 import './App.css';
