@@ -15,7 +15,8 @@ class App extends Component {
       image: {},
       status: 0,
       life: 3,
-      points: 0
+      points: 0,
+      input: null,
     }
   }
 
@@ -38,16 +39,20 @@ class App extends Component {
   nextStep(e, status) {
     // reset the input
     e.target.value = "";
+
     // define correct or wrong answer
     this.setState({
+      input: null,
       status: status,
       points: status === 1 ? this.state.points + 1 : this.state.points,
       life: status === -1 ? this.state.life - 1 : this.state.life
     });
+
     // after one second generate another image
     setTimeout(() => {
       // delete the correct answer from the data bank
       status === 1 && logos.splice(logos.findIndex(obj => obj.name === this.state.image.name), 1);
+
       this.setState({
         image: this.randomImage(),
         status: 0
@@ -57,6 +62,7 @@ class App extends Component {
 
   checkValue = (e) => {
     if (e.keyCode === 13) {
+
       if( navigator.userAgent.match(/Android/i)
           || navigator.userAgent.match(/webOS/i)
           || navigator.userAgent.match(/iPhone/i)
@@ -66,9 +72,8 @@ class App extends Component {
       ) {
         e.target.blur();
       }
-      // if (e.target.value === this.state.image.name) {
-      if (e.target.value.match(this.state.image.name, 'g')) {
-        // delete the correct answer from the data bank
+
+      if (this.state.input.toLowerCase().match(this.state.image.name, 'g')) {
         this.nextStep(e, 1);
       } else {
         this.nextStep(e, -1);
@@ -116,7 +121,15 @@ class App extends Component {
             <div className="random-image">
               <LazyLoadImage effect="blur" key={status === 1 ? image.main : image.placeholder} alt="game" className="random-image__element" src={status === 1 ? image.main : image.placeholder} />
             </div>
-            <input className="input" autoFocus type="text" onKeyDown={(e) => this.checkValue(e)} autoComplete="off" name="language"/>
+            <input
+                className="input"
+                type="text"
+                onChange={(e) => this.setState({ input: e.target.value })}
+                onKeyDown={(e) => this.checkValue(e)}
+                autoComplete="off"
+                name="language"
+                autoFocus
+            />
           </div>
         }
         {logos.length === 0 &&
