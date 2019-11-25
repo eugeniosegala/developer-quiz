@@ -64,6 +64,7 @@ body, html, #root {
 
 .random-image {
   margin: 10px;
+  height: 300px;
 }
 
 .random-image__element {
