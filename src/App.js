@@ -114,7 +114,7 @@ class App extends Component {
               }
             </div>
             <div className="random-image">
-              <LazyLoadImage effect="blur" alt="game" className="random-image__element" src={status === 1 ? image.main : image.placeholder} />
+              <LazyLoadImage effect="blur" key={status === 1 ? image.main : image.placeholder} alt="game" className="random-image__element" src={status === 1 ? image.main : image.placeholder} />
             </div>
             <input className="input" autoFocus type="text" onKeyDown={(e) => this.checkValue(e)} autoComplete="off" name="language"/>
           </div>
