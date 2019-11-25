@@ -9,6 +9,15 @@ import Win from './assets/win.gif';
 import gameOver from './assets/game-over.gif';
 import Life from './assets/life.png';
 
+const mobileDetection = () => {
+  return navigator.userAgent.match(/Android/i)
+  || navigator.userAgent.match(/webOS/i)
+  || navigator.userAgent.match(/iPhone/i)
+  || navigator.userAgent.match(/iPad/i)
+  || navigator.userAgent.match(/iPod/i)
+  || navigator.userAgent.match(/BlackBerry/i)
+};
+
 const baseRandom = (lower, upper) => {
   const nativeFloor = Math.floor;
   const nativeRandom = Math.random;
@@ -60,13 +69,7 @@ const App = () => {
       });
 
       if (inputEl.current) {
-        if (navigator.userAgent.match(/Android/i)
-          || navigator.userAgent.match(/webOS/i)
-          || navigator.userAgent.match(/iPhone/i)
-          || navigator.userAgent.match(/iPad/i)
-          || navigator.userAgent.match(/iPod/i)
-          || navigator.userAgent.match(/BlackBerry/i)
-        ) {
+        if (mobileDetection()) {
           inputEl.current.blur();
         } else {
           inputEl.current.focus();
@@ -77,6 +80,11 @@ const App = () => {
 
   const checkValue = (e) => {
     if (e.keyCode === 13) {
+      if (inputEl.current) {
+        if (mobileDetection()) {
+          inputEl.current.blur();
+        }
+      }
       nextStep(e, data.input.toLowerCase().match(data.image.name, 'g') ? 1 : -1);
     }
   };
@@ -133,7 +141,7 @@ const App = () => {
                 autoComplete="off"
                 name="language"
                 value={ data.input }
-                autoFocus
+                autoFocus={ !mobileDetection() }
                 disabled={ data.status !== 0 }
             />
           </div>
@@ -148,7 +156,7 @@ const App = () => {
                 }
               </div>
               <div className="game__ending">
-                <p>Points: <span className="game__ending__score">{data.points}</span></p>
+                <p>Score: <span className="game__ending__score">{data.points}</span></p>
                 <p>Lives: <span className="game__ending__score">{data.lives}</span></p>
                 <p><span className="game__ending__retry" onClick={() => window.location.reload()}> Retry? </span></p>
               </div>
