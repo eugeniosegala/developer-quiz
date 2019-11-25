@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -21,10 +21,12 @@ const randomImage = () => {
 
 const App = () => {
 
+  const inputEl = useRef(null);
+
   const [data, setData] = useState({
     image: logos[baseRandom(0, logos.length - 1)],
     status: 0,
-    life: 3,
+    lives: 3,
     points: 0,
     input: '',
   });
@@ -32,7 +34,7 @@ const App = () => {
   const nextStep = (e, status) => {
 
     const sharedState = {
-      life: status === -1 ? data.life - 1 : data.life,
+      lives: status === -1 ? data.lives - 1 : data.lives,
       input: '',
       points: status === 1 ? data.points + 1 : data.points,
     };
@@ -46,49 +48,49 @@ const App = () => {
 
     // after one second generate another image
     setTimeout(() => {
-      // delete the correct answer from the data bank
+
+      // delete the correct answer from the data object
       status === 1 && logos.splice(logos.findIndex(obj => obj.name === data.image.name), 1);
 
       setData({
         ...data,
         ...sharedState,
         image: randomImage(),
-        status: 0
+        status: 0,
       });
-    }, 1000);
-  };
 
-  const checkValue = (e) => {
-    if (e.keyCode === 13) {
-
-      if( navigator.userAgent.match(/Android/i)
+      if (inputEl.current) {
+        if (navigator.userAgent.match(/Android/i)
           || navigator.userAgent.match(/webOS/i)
           || navigator.userAgent.match(/iPhone/i)
           || navigator.userAgent.match(/iPad/i)
           || navigator.userAgent.match(/iPod/i)
           || navigator.userAgent.match(/BlackBerry/i)
-      ) {
-        e.target.blur();
+        ) {
+          inputEl.current.blur();
+        } else {
+          inputEl.current.focus();
+        }
       }
+    }, 1000);
+  };
 
-      if (data.input.toLowerCase().match(data.image.name, 'g')) {
-        nextStep(e, 1);
-      } else {
-        nextStep(e, -1);
-      }
+  const checkValue = (e) => {
+    if (e.keyCode === 13) {
+      nextStep(e, data.input.toLowerCase().match(data.image.name, 'g') ? 1 : -1);
     }
   };
 
-  const lifeCounter = () => {
+  const livesCounter = () => {
     let i = 0;
     let currentLives = [];
-    for (i; i < data.life; i++) {
+    for (i; i < data.lives; i++) {
       currentLives.push(<img key={ i } className="health__life" width="40px" src={Life} alt="life" />)
     }
 
     let d = 0;
     let lostLives = [];
-    for (d; d < Math.abs(data.life - 3); d++) {
+    for (d; d < Math.abs(data.lives - 3); d++) {
       lostLives.push(<img key={ d } className="health__life" style={{ opacity: "0.3" }} width="40px" src={Life} alt="life" />)
     }
 
@@ -100,7 +102,7 @@ const App = () => {
 
   return (
       <div className="app">
-        {logos.length !== 0 && data.life !== 0 &&
+        {logos.length !== 0 && data.lives !== 0 &&
           <div className="game">
             <div className={data.status === 0 ? 'message message--state-default' : data.status === 1 ? "message message--state-success" : "message message--state-failure"}>
               {data.status === 0 &&
@@ -123,6 +125,7 @@ const App = () => {
               />
             </div>
             <input
+                ref={inputEl}
                 className="input"
                 type="text"
                 onChange={(e) => setData({ ...data, input: e.target.value })}
@@ -131,35 +134,28 @@ const App = () => {
                 name="language"
                 value={ data.input }
                 autoFocus
+                disabled={ data.status !== 0 }
             />
           </div>
         }
-        {logos.length === 0 &&
+        {(logos.length === 0 || data.lives === 0 )&&
             <div className="game">
               <div className="random-image">
-                <LazyLoadImage effect="blur" className="random-image__element" src={Win} alt="win" />
+                {logos.length === 0 ?
+                  <LazyLoadImage effect="blur" className="random-image__element" src={Win} alt="win"/>
+                  :
+                  <LazyLoadImage effect="blur" className="random-image__element" src={gameOver} alt="win"/>
+                }
               </div>
               <div className="game__ending">
-                <p>Total points: <span className="game__ending__score">{data.points}</span></p>
-                <p>Remaining life: <span className="game__ending__score">{data.life}</span></p>
+                <p>Points: <span className="game__ending__score">{data.points}</span></p>
+                <p>Lives: <span className="game__ending__score">{data.lives}</span></p>
                 <p><span className="game__ending__retry" onClick={() => window.location.reload()}> Retry? </span></p>
               </div>
             </div>
         }
-        {data.life === 0 &&
-          <div className="game">
-            <div className="random-image">
-              <LazyLoadImage effect="blur" className="random-image__element" src={gameOver} alt="Game Over" />
-            </div>
-            <div className="game__ending">
-              <p>Total points: <span className="game__ending__score">{data.points}</span></p>
-              <p>Remaining life: <span className="game__ending__score">{data.life}</span></p>
-              <p><span className="game__ending__retry" onClick={() => window.location.reload()}> Retry? </span></p>
-            </div>
-          </div>
-        }
         <div className="health">
-          {lifeCounter()}
+          {livesCounter()}
         </div>
       </div>
     );
