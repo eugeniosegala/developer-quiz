@@ -80,13 +80,13 @@ class App extends Component {
     let i = 0;
     let currentLives = [];
     for (i; i < this.state.life; i++) {
-      currentLives.push(<LazyLoadImage effect="blur" key={ i } className="health__life" width="40px" src={Life} alt="life" />)
+      currentLives.push(<img key={ i } className="health__life" width="40px" src={Life} alt="life" />)
     }
 
     let d = 0;
     let lostLives = [];
     for (d; d < Math.abs(this.state.life - 3); d++) {
-      lostLives.push(<LazyLoadImage effect="blur" key={ d } className="health__life" style={{ opacity: "0.3" }} width="40px" src={Life} alt="life" />)
+      lostLives.push(<img key={ d } className="health__life" style={{ opacity: "0.3" }} width="40px" src={Life} alt="life" />)
     }
 
     return [
