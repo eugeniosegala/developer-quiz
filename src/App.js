@@ -85,7 +85,7 @@ const App = () => {
           inputEl.current.blur();
         }
       }
-      nextStep(e, data.input.toLowerCase().match(data.image.name, 'g') ? 1 : -1);
+      nextStep(e, data.input.toLowerCase().replace(/ /g,'').match(data.image.name, 'g') ? 1 : -1);
     }
   };
 
