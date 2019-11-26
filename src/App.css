@@ -70,9 +70,7 @@ body, html, #root {
 .random-image {
   margin: 10px;
   height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
 }
 
 .random-image__element {
@@ -82,6 +80,16 @@ body, html, #root {
 
 .random-image__loader {
   width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 50%;
+  margin-left: -15px;
+  top: 50%;
+  margin-top: -15px;
+}
+
+.random-image__loader img {
+  width: 100%;
 }
 
 .input {

@@ -147,7 +147,7 @@ const App = () => {
                 <LazyLoadImage
                   effect="blur"
                   alt="loading..."
-                  className="random-image__loader"
+                  wrapperClassName="random-image__loader"
                   src={Loader}
                 />
               }
