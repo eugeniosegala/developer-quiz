@@ -8,6 +8,9 @@ import { success, failure } from './message';
 import Win from './assets/win.gif';
 import gameOver from './assets/game-over.gif';
 import Life from './assets/life.png';
+import Loader from './assets/loader.jpg';
+
+const INITIAL_LIVES = 3;
 
 const handleDeviceDetection = () => {
   return navigator.userAgent.match(/Android/i)
@@ -35,25 +38,29 @@ const App = () => {
   const [data, setData] = useState({
     image: logos[getRandomNumBetween(0, logos.length - 1)],
     status: 0,
-    lives: 3,
+    lives: INITIAL_LIVES,
     points: 0,
     input: '',
   });
 
-  const nextStep = (e, status) => {
+  const [loader, setLoader] = useState(false);
 
-    const sharedState = {
-      lives: status === -1 ? data.lives - 1 : data.lives,
-      points: status === 1 ? data.points + 1 : data.points,
-      input: '',
-    };
+  const nextStep = (e, status) => {
 
     // define correct or wrong answer
     setData({
       ...data,
-      ...sharedState,
+      lives: status === -1 ? data.lives - 1 : data.lives,
+      points: status === -1 ? data.points : data.points + 1,
+      input: '',
       status: status,
     });
+
+    status === -1 && changeImage(status);
+
+  };
+
+  const changeImage = (status) => {
 
     // after one second generate another image
     setTimeout(() => {
@@ -63,7 +70,9 @@ const App = () => {
 
       setData({
         ...data,
-        ...sharedState,
+        lives: status === -1 ? data.lives - 1 : data.lives,
+        points: status === -1 ? data.points : data.points + 1,
+        input: '',
         status: 0,
         image: getRandomImage(),
       });
@@ -97,7 +106,7 @@ const App = () => {
 
     let d = 0;
     let lostLives = [];
-    for (d; d < Math.abs(data.lives - 3); d++) {
+    for (d; d < Math.abs(data.lives - INITIAL_LIVES); d++) {
       lostLives.push(<img key={ d } className="health__life" style={{ opacity: "0.3" }} width="40px" src={Life} alt="life" />)
     }
 
@@ -109,14 +118,14 @@ const App = () => {
 
   return (
       <div className="app">
-        {(data.status === 1 || data.status === -1) &&
+        {!!data.status &&
           <div className={ data.status === 1 ? "message message--state-success" : "message message--state-failure"} >
             {data.status === 1 ? <span>{success[getRandomNumBetween(0, 10)]}</span> : <span>{failure[getRandomNumBetween(0, 5)]}</span>}
           </div>
         }
-        {(logos.length !== 0 && data.lives !== 0) &&
+        {(logos.length && !!data.lives) &&
           <div className="game">
-            {data.status === 0 &&
+            {!data.status &&
               <div className="message message--state-default">
                 <span>What is it?</span>
               </div>
@@ -128,7 +137,20 @@ const App = () => {
                   alt="programming language logo"
                   className="random-image__element"
                   src={data.status === 1 ? data.image.main : data.image.placeholder}
+                  beforeLoad={() => setLoader(true )}
+                  afterLoad={() => {
+                    setLoader(false );
+                    data.status && changeImage(data.status);
+                  }}
               />
+              {loader &&
+                <LazyLoadImage
+                  effect="blur"
+                  alt="loading..."
+                  className="random-image__loader"
+                  src={Loader}
+                />
+              }
             </div>
             <label hidden htmlFor="language">Language</label>
             <input
@@ -145,10 +167,10 @@ const App = () => {
             />
           </div>
         }
-        {(logos.length === 0 || data.lives === 0) &&
+        {(!logos.length || !data.lives) &&
             <div className="game">
               <div className="random-image">
-                {logos.length === 0 ?
+                {!logos.length ?
                   <LazyLoadImage effect="blur" className="random-image__element" src={Win} alt="win"/>
                   :
                   <LazyLoadImage effect="blur" className="random-image__element" src={gameOver} alt="win"/>

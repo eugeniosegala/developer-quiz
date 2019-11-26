@@ -70,11 +70,18 @@ body, html, #root {
 .random-image {
   margin: 10px;
   height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .random-image__element {
   width: 100%;
   max-width: 400px;
+}
+
+.random-image__loader {
+  width: 30px;
 }
 
 .input {
