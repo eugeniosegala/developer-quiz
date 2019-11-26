@@ -130,6 +130,7 @@ const App = () => {
                   src={data.status === 1 ? data.image.main : data.image.placeholder}
               />
             </div>
+            <label hidden htmlFor="language">Language</label>
             <input
                 ref={inputEl}
                 className="input"
