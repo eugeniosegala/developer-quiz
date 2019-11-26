@@ -2,14 +2,14 @@ import React, { useState, useRef } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
+import './App.css';
 import { logos } from './image';
 import { success, failure } from './message';
-import './App.css';
 import Win from './assets/win.gif';
 import gameOver from './assets/game-over.gif';
 import Life from './assets/life.png';
 
-const mobileDetection = () => {
+const handleDeviceDetection = () => {
   return navigator.userAgent.match(/Android/i)
   || navigator.userAgent.match(/webOS/i)
   || navigator.userAgent.match(/iPhone/i)
@@ -18,14 +18,14 @@ const mobileDetection = () => {
   || navigator.userAgent.match(/BlackBerry/i)
 };
 
-const baseRandom = (lower, upper) => {
+const getRandomNumBetween = (lower, upper) => {
   const nativeFloor = Math.floor;
   const nativeRandom = Math.random;
   return lower + nativeFloor(nativeRandom() * (upper - lower + 1));
 };
 
-const randomImage = () => {
-  return logos[baseRandom(0, logos.length - 1)];
+const getRandomImage = () => {
+  return logos[getRandomNumBetween(0, logos.length - 1)];
 };
 
 const App = () => {
@@ -33,7 +33,7 @@ const App = () => {
   const inputEl = useRef(null);
 
   const [data, setData] = useState({
-    image: logos[baseRandom(0, logos.length - 1)],
+    image: logos[getRandomNumBetween(0, logos.length - 1)],
     status: 0,
     lives: 3,
     points: 0,
@@ -44,8 +44,8 @@ const App = () => {
 
     const sharedState = {
       lives: status === -1 ? data.lives - 1 : data.lives,
-      input: '',
       points: status === 1 ? data.points + 1 : data.points,
+      input: '',
     };
 
     // define correct or wrong answer
@@ -64,26 +64,25 @@ const App = () => {
       setData({
         ...data,
         ...sharedState,
-        image: randomImage(),
-        status: 0
+        status: 0,
+        image: getRandomImage(),
       });
 
       if (inputEl.current) {
-        if (mobileDetection()) {
+        if (handleDeviceDetection()) {
           inputEl.current.blur();
         } else {
           inputEl.current.focus();
         }
       }
+
     }, 1000);
   };
 
   const checkValue = (e) => {
     if (e.keyCode === 13) {
-      if (inputEl.current) {
-        if (mobileDetection()) {
+      if (inputEl.current && handleDeviceDetection()) {
           inputEl.current.blur();
-        }
       }
       nextStep(e, data.input.toLowerCase().replace(/ /g,'').match(data.image.name, 'g') ? 1 : -1);
     }
@@ -112,7 +111,7 @@ const App = () => {
       <div className="app">
         {(data.status === 1 || data.status === -1) &&
           <div className={ data.status === 1 ? "message message--state-success" : "message message--state-failure"} >
-            {data.status === 1 ? <span>{success[baseRandom(0, 10)]}</span> : <span>{failure[baseRandom(0, 5)]}</span>}
+            {data.status === 1 ? <span>{success[getRandomNumBetween(0, 10)]}</span> : <span>{failure[getRandomNumBetween(0, 5)]}</span>}
           </div>
         }
         {(logos.length !== 0 && data.lives !== 0) &&
@@ -140,7 +139,7 @@ const App = () => {
                 autoComplete="off"
                 name="language"
                 value={ data.input }
-                autoFocus={ !mobileDetection() }
+                autoFocus={ !handleDeviceDetection() }
                 disabled={ data.status !== 0 }
             />
           </div>
