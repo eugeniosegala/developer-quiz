@@ -45,6 +45,8 @@ const App = () => {
 
   const [loader, setLoader] = useState(false);
 
+  const [popup, setPopup] = useState(true);
+
   const nextStep = (e, status) => {
 
     // define correct or wrong answer
@@ -117,6 +119,21 @@ const App = () => {
 
   return (
     <div className="app">
+      {popup &&
+        <div className="popup">
+          <h2>🎉 Welcome to Devs quiz!</h2>
+          <p>I will show you some partial images of logos related to programming languages, databases, tools and more!</p>
+          <p>You will have to answer with the correct answer! (Or what you believe is the right answer) 🤓</p>
+          <button
+            type="button"
+            onClick={() => {
+              setPopup(false);
+              inputEl.current.focus();
+            }}>
+              Let's do this!
+            </button>
+        </div>
+      }
       {(!data.status && !!logos.length && !!data.lives) &&
         <div className="message message--state-default">
           <span>What is it?</span>
