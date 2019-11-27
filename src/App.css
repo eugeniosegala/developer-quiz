@@ -120,12 +120,14 @@ body, html, #root {
 }
 
 .health {
-    position: fixed;
-    bottom: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
+  position: fixed;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
 }
 
 @media screen and (max-height: 525px) {
