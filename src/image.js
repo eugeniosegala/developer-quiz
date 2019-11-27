@@ -26,5 +26,85 @@ export const logos = [
     main: images[counter++],
     placeholder: images[counter++],
     name: "cassandra"
-  }
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "docker"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "node"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "java"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "scala"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "mysql"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "mongodb"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "linux"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "npm"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "mariadb"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "go"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: ".net"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "postgresql"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "sqlserver"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "ruby"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "perl"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "python"
+  },
 ];

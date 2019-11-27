@@ -51,7 +51,6 @@ const App = () => {
     setData({
       ...data,
       lives: status === -1 ? data.lives - 1 : data.lives,
-      points: status === -1 ? data.points : data.points + 1,
       input: '',
       status: status,
     });
