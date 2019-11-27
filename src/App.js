@@ -100,13 +100,13 @@ const App = () => {
     let i = 0;
     let currentLives = [];
     for (i; i < data.lives; i++) {
-      currentLives.push(<img key={i} className="health__life" width="40px" src={Life} alt="life" />)
+      currentLives.push(<LazyLoadImage key={i} className="health__life" width="40px" src={Life} alt="life" />)
     }
 
     let d = 0;
     let lostLives = [];
     for (d; d < Math.abs(data.lives - INITIAL_LIVES); d++) {
-      lostLives.push(<img key={d} className="health__life" style={{ opacity: "0.3" }} width="40px" src={Life} alt="life" />)
+      lostLives.push(<LazyLoadImage key={d} className="health__life" style={{ opacity: "0.3" }} width="40px" src={Life} alt="life" />)
     }
 
     return [
