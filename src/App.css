@@ -78,6 +78,16 @@ body, html, #root {
   max-width: 400px;
 }
 
+.random-image__fake {
+  width: 400px;
+  height: 300px;
+  position: absolute;
+  left: 50%;
+  margin-left: -200px;
+  top: 50%;
+  margin-top: -150px;
+}
+
 .random-image__loader {
   width: 30px;
   height: 30px;

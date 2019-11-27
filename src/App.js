@@ -144,12 +144,19 @@ const App = () => {
                   }}
               />
               {loader &&
-                <LazyLoadImage
-                  effect="blur"
-                  alt="loading..."
-                  wrapperClassName="random-image__loader"
-                  src={Loader}
-                />
+                <span>
+                  <img
+                    alt="programming language logo"
+                    className="random-image__fake"
+                    src={data.image.placeholder}
+                  />
+                  <LazyLoadImage
+                    effect="blur"
+                    alt="loading..."
+                    wrapperClassName="random-image__loader"
+                    src={Loader}
+                  />
+                </span>
               }
             </div>
             <label hidden htmlFor="language">Language</label>
