@@ -116,18 +116,21 @@ body, html, #root {
   right: 0;
   width: 100%;
   text-align: right;
-  margin-top: 10px;
-}
-
-@media screen and (max-height: 540px) {
-  .health {
-    position: relative;
-    margin: 25px 0 -75px 0;
-  }
 }
 
 .health__life {
   margin-right: 15px;
+}
+
+@media screen and (max-width: 599px) {
+  .health {
+    position: relative;
+    margin-top: 40px;
+    text-align: center;
+  }
+  .health__life {
+    margin-left: 15px;
+  }
 }
 
 @-webkit-keyframes flash {
