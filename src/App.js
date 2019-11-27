@@ -137,10 +137,11 @@ const App = () => {
                 key={data.status === 1 ? data.image.main : data.image.placeholder}
                 alt="programming language logo"
                 className="random-image__element"
+                style={{ display: loader && 'none' }}
                 src={data.status === 1 ? data.image.main : data.image.placeholder}
-                beforeLoad={() => setLoader(true )}
+                beforeLoad={() => setLoader(true)}
                 afterLoad={() => {
-                  setLoader(false );
+                  setLoader(false);
                   data.status && changeImage(data.status);
                 }}
               />
@@ -148,7 +149,7 @@ const App = () => {
                 <span>
                   <img
                     alt="programming language logo"
-                    className="random-image__fake"
+                    className="random-image__element"
                     src={data.image.placeholder}
                   />
                   <LazyLoadImage
