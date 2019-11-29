@@ -1,6 +1,6 @@
 export const success = [
-  "🎉",
-  "Like a 🦄.",
+  '🎉',
+  'Like a 🦄.',
   "Great.",
   "Amazing Man!",
   "Take My money. NOW!",
@@ -17,7 +17,7 @@ export const failure = [
   "Such a disaster.",
   "You need to study.",
   "Turn off the computer.",
-  "🤮",
-  "💩"
+  '🤮',
+  '💩',
 ];
 
