@@ -59,8 +59,8 @@ body, html, #root {
   text-align: center;
 }
 
-.app__game__random-image__lazy img {
-  width: 90%;
+.app__game__random-image__lazy {
+  width: 95%;
 }
 
 .app__game__random-image__loader {
