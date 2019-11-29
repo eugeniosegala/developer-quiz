@@ -46,7 +46,7 @@ const App = () => {
 
   const [loader, setLoader] = useState(false);
 
-  const [popup, setPopup] = useState(false);
+  const [popup, setPopup] = useState(true);
 
   useEffect(() => {
     if (inputEl.current) {
