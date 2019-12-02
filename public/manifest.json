@@ -1,7 +1,7 @@
 {
   "short_name": "DQ",
   "name": "Devs Quiz",
-  "description": "Devs Quiz Splash Screens",
+  "description": "Quiz for developers!",
   "icons": [
     {
       "src": "./icons/favicon.ico",
