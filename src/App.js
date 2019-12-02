@@ -3,11 +3,12 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import './App.css';
-import { logos } from './image';
+import { logos } from './images';
 import Win from './assets/win.gif';
 import gameOver from './assets/game-over.gif';
 import Life from './assets/life.png';
 import Loader from './assets/loader.gif';
+import { getRandomNumBetween } from './helpers/random';
 
 import Message from './components/Message';
 
@@ -20,12 +21,6 @@ const handleDeviceDetection = () => {
   || navigator.userAgent.match(/iPad/i)
   || navigator.userAgent.match(/iPod/i)
   || navigator.userAgent.match(/BlackBerry/i)
-};
-
-const getRandomNumBetween = (lower, upper) => {
-  const nativeFloor = Math.floor;
-  const nativeRandom = Math.random;
-  return lower + nativeFloor(nativeRandom() * (upper - lower + 1));
 };
 
 const getRandomImage = () => {

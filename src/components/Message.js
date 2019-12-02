@@ -1,12 +1,7 @@
 import React from 'react';
 
 import { success, failure } from '../messages';
-
-const getRandomNumBetween = (lower, upper) => {
-  const nativeFloor = Math.floor;
-  const nativeRandom = Math.random;
-  return lower + nativeFloor(nativeRandom() * (upper - lower + 1));
-};
+import { getRandomNumBetween } from '../helpers/random';
 
 const Message = React.memo(({ status }) => {
   return (
