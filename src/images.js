@@ -1,11 +1,11 @@
 
-function sortNumber(a, b) {
+const sortNumber = (a, b) => {
   return a.match(/\d+/g).map(Number) - b.match(/\d+/g).map(Number);
-}
+};
 
-function importAll(r) {
+const importAll = (r) => {
   return r.keys().sort(sortNumber).map(r);
-}
+};
 
 const images = importAll(require.context('../images', false, /\.(png|jpe?g|svg)$/));
 
