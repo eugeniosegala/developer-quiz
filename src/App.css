@@ -63,6 +63,9 @@ body, html, #root {
 .app__game__main__container {
   position: relative;
   height: 285px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .app__game__main__container__image {
@@ -111,7 +114,7 @@ body, html, #root {
 }
 
 .app__game__main__ending {
-  margin-top: 15px;
+  margin-top: 8px;
   font-size: 18px;
   text-align: center;
 }
