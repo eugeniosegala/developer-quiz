@@ -107,4 +107,34 @@ export const logos = [
     placeholder: images[counter++],
     name: "python"
   },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "spark"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "jquery"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "azure"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "git"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "yarn"
+  },
+  {
+    main: images[counter++],
+    placeholder: images[counter++],
+    name: "swift"
+  },
 ];
