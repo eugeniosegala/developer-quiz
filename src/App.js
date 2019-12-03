@@ -147,13 +147,13 @@ const App = () => {
       }
       <div className="app__game">
         {(!!logos.length && !!data.lives) &&
-          <div className="app__game__random-image">
-            <span className="stuff">
+          <div className="app__game__main">
+            <span className="app__game__main__container">
               <LazyLoadImage
                 effect="blur"
                 key={data.status === 1 ? data.image.main : data.image.placeholder}
                 alt="programming language logo"
-                className="app__game__random-image__lazy"
+                className="app__game__main__container__image"
                 style={{ display: loader && 'none' }}
                 src={data.status === 1 ? data.image.main : data.image.placeholder}
                 beforeLoad={() => setLoader(true)}
@@ -162,25 +162,25 @@ const App = () => {
                   data.status && changeImage(data.status);
                 }}
               />
-            {loader &&
-              <span>
-                <img
-                  alt="programming language logo"
-                  className="app__game__random-image__lazy"
-                  src={data.image.placeholder}
-                />
-                <LazyLoadImage
-                  effect="blur"
-                  alt="loading..."
-                  wrapperClassName="app__game__random-image__loader"
-                  src={Loader}
-                />
-              </span>
-            }
+              {loader &&
+                <React.Fragment>
+                  <img
+                    alt="programming language logo"
+                    className="app__game__main__container__image"
+                    src={data.image.placeholder}
+                  />
+                  <LazyLoadImage
+                    effect="blur"
+                    alt="loading..."
+                    wrapperClassName="app__game__main__container__loader"
+                    src={Loader}
+                  />
+                </React.Fragment>
+              }
             </span>
             <input
               ref={inputEl}
-              className="app__game__input"
+              className="app__game__main__input"
               type="text"
               onChange={(e) => setData({ ...data, input: e.target.value })}
               onKeyDown={(e) => checkValue(e)}
@@ -193,20 +193,20 @@ const App = () => {
           </div>
         }
         {(!logos.length || !data.lives) &&
-          <React.Fragment>
-            <div className="app__game__random-image">
+          <div className="app__game__main">
+            <div className="app__game__main__container">
               {!logos.length ?
-                <LazyLoadImage effect="blur" className="app__game__random-image__lazy" src={Win} alt="win"/>
+                <LazyLoadImage effect="blur" className="app__game__main__container__image" src={Win} alt="win"/>
                 :
-                <LazyLoadImage effect="blur" className="app__game__random-image__lazy" src={gameOver} alt="win"/>
+                <LazyLoadImage effect="blur" className="app__game__main__container__image" src={gameOver} alt="win"/>
               }
             </div>
-            <div className="app__game__ending">
-              <p>Score: <span className="app__game__ending__score">{data.points}</span></p>
-              <p>Lives: <span className="app__game__ending__score">{data.lives}</span></p>
-              <p><span className="app__game__ending__retry" onClick={() => window.location.reload()}> Retry? </span></p>
+            <div className="app__game__main__ending">
+              <div>Score: <span className="app__game__main__ending__score">{data.points}</span></div>
+              <div>Lives: <span className="app__game__main__ending__score">{data.lives}</span></div>
+              <p className="app__game__main__ending__retry" onClick={() => window.location.reload()}> Retry?</p>
             </div>
-          </React.Fragment>
+          </div>
         }
         <div className="app__game__health">
           {livesCounter()}

@@ -4,7 +4,7 @@ body, html, #root {
   margin: 0;
   padding: 0;
   font-family: 'Cabin', sans-serif;
-  min-height: 490px;
+  min-height: 500px;
   overflow: hidden;
 }
 
@@ -49,7 +49,7 @@ body, html, #root {
   overflow: hidden;
 }
 
-.app__game__random-image {
+.app__game__main {
   grid-area: main;
   margin: 10px;
   position: relative;
@@ -60,15 +60,17 @@ body, html, #root {
   text-align: center;
 }
 
-.app__game__random-image__lazy {
-  width: 95%;
-}
-
-.stuff {
+.app__game__main__container {
+  position: relative;
   height: 285px;
 }
 
-.app__game__random-image__loader {
+.app__game__main__container__image {
+  width: 95%;
+  max-height: 285px;
+}
+
+.app__game__main__container__loader {
   width: 30px;
   height: 30px;
   position: absolute;
@@ -78,7 +80,7 @@ body, html, #root {
   margin-top: -15px;
 }
 
-.app__game__input {
+.app__game__main__input {
   margin-top: 25px;
   width: 100%;
   max-width: 250px;
@@ -89,43 +91,38 @@ body, html, #root {
   text-transform:uppercase;
 }
 
-.app__game__input:focus {
+.app__game__main__input:focus {
   box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28);
   outline: 0;
 }
 
 .app__game__health {
   grid-area: footer;
-  padding: 15px 0 5px 0;
+  padding: 10px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 100%;
 }
 
 .app__game__health__life {
   margin-right: 15px;
-  max-height: 30px;
+  max-height: 35px;
   height: 100%;
 }
 
-.app__game__ending {
-  margin-top: 0;
+.app__game__main__ending {
+  margin-top: 15px;
   font-size: 18px;
   text-align: center;
 }
 
-.app__game__ending p {
-  margin: 5px 0 5px 0;
-}
-
-.app__game__ending__score {
+.app__game__main__ending__score {
   color: goldenrod;
   font-size: 20px;
 }
 
-.app__game__ending__retry {
-  -webkit-animation: flash linear 1s infinite;
+.app__game__main__ending__retry {
+  margin-top: 20px;
   animation: flash linear 1s infinite;
   cursor: pointer;
   font-weight: bold;
