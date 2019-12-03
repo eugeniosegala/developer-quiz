@@ -4,7 +4,7 @@ body, html, #root {
   margin: 0;
   padding: 0;
   font-family: 'Cabin', sans-serif;
-  min-height: 540px;
+  min-height: 490px;
   overflow: hidden;
 }
 
@@ -39,28 +39,33 @@ body, html, #root {
 }
 
 .app__game {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  display: grid;
   height: 100%;
+  grid-template-columns: 100%;
+  grid-template-rows: 90% 10%;
+  grid-template-areas:
+    "main"
+    "footer";
   overflow: hidden;
 }
 
 .app__game__random-image {
+  grid-area: main;
   margin: 10px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90%;
-  max-width: 400px;
-  height: 300px;
+  flex-direction: column;
   text-align: center;
 }
 
 .app__game__random-image__lazy {
   width: 95%;
+}
+
+.stuff {
+  height: 285px;
 }
 
 .app__game__random-image__loader {
@@ -90,14 +95,18 @@ body, html, #root {
 }
 
 .app__game__health {
-  padding-top: 15px;
-  padding-bottom: 5px;
+  grid-area: footer;
+  padding: 15px 0 5px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   width: 100%;
-  text-align: right;
 }
 
 .app__game__health__life {
   margin-right: 15px;
+  max-height: 30px;
+  height: 100%;
 }
 
 .app__game__ending {

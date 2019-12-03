@@ -35,7 +35,7 @@ export const logos = [
   {
     main: images[counter++],
     placeholder: images[counter++],
-    name: "node"
+    name: "nodejs"
   },
   {
     main: images[counter++],

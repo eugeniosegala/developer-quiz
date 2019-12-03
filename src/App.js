@@ -65,6 +65,10 @@ const App = () => {
 
     status === -1 && changeImage(status);
 
+    if (handleDeviceDetection()) {
+      inputEl.current.blur();
+    }
+
   };
 
   const changeImage = (status) => {
@@ -97,13 +101,13 @@ const App = () => {
     let i = 0;
     let currentLives = [];
     for (i; i < data.lives; i++) {
-      currentLives.push(<LazyLoadImage key={i} className="app__game__health__life" width="40px" src={Life} alt="life" />)
+      currentLives.push(<LazyLoadImage key={i} className="app__game__health__life" src={Life} alt="life" />)
     }
 
     let d = 0;
     let lostLives = [];
     for (d; d < Math.abs(data.lives - INITIAL_LIVES); d++) {
-      lostLives.push(<LazyLoadImage key={d} className="app__game__health__life" style={{ opacity: "0.3" }} width="40px" src={Life} alt="life" />)
+      lostLives.push(<LazyLoadImage key={d} className="app__game__health__life" style={{ opacity: "0.3" }} src={Life} alt="life" />)
     }
 
     return [
@@ -143,9 +147,8 @@ const App = () => {
       }
       <div className="app__game">
         {(!!logos.length && !!data.lives) &&
-          <React.Fragment>
-            <div style={{ flexGrow: 1 }} />
-            <div className="app__game__random-image">
+          <div className="app__game__random-image">
+            <span className="stuff">
               <LazyLoadImage
                 effect="blur"
                 key={data.status === 1 ? data.image.main : data.image.placeholder}
@@ -159,22 +162,22 @@ const App = () => {
                   data.status && changeImage(data.status);
                 }}
               />
-              {loader &&
-                <span>
-                  <img
-                    alt="programming language logo"
-                    className="app__game__random-image__lazy"
-                    src={data.image.placeholder}
-                  />
-                  <LazyLoadImage
-                    effect="blur"
-                    alt="loading..."
-                    wrapperClassName="app__game__random-image__loader"
-                    src={Loader}
-                  />
-                </span>
-              }
-            </div>
+            {loader &&
+              <span>
+                <img
+                  alt="programming language logo"
+                  className="app__game__random-image__lazy"
+                  src={data.image.placeholder}
+                />
+                <LazyLoadImage
+                  effect="blur"
+                  alt="loading..."
+                  wrapperClassName="app__game__random-image__loader"
+                  src={Loader}
+                />
+              </span>
+            }
+            </span>
             <input
               ref={inputEl}
               className="app__game__input"
@@ -187,11 +190,10 @@ const App = () => {
               autoFocus={ !handleDeviceDetection() }
               disabled={data.status !== 0 || loader}
             />
-          </React.Fragment>
+          </div>
         }
         {(!logos.length || !data.lives) &&
           <React.Fragment>
-            <div style={{ flexGrow: 1 }} />
             <div className="app__game__random-image">
               {!logos.length ?
                 <LazyLoadImage effect="blur" className="app__game__random-image__lazy" src={Win} alt="win"/>
@@ -206,7 +208,6 @@ const App = () => {
             </div>
           </React.Fragment>
         }
-        <div style={{ flexGrow: 1 }} />
         <div className="app__game__health">
           {livesCounter()}
         </div>
