@@ -138,7 +138,7 @@ const App = () => {
         </div>
       }
       {(!data.status && !!logos.length && !!data.lives) &&
-        <div className="message message--state-default">
+        <div className="app__message app__message--state-default">
           <span>What is it?</span>
         </div>
       }
