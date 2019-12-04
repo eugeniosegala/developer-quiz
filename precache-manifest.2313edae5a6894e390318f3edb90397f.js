@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b7fcbdb698bf186f37170d17c3e80ddd",
+    "revision": "b65bd4c2b06ab75e1f133f94a3c01abb",
     "url": "/devs-quiz/index.html"
   },
   {
-    "revision": "80d84c8ed15179e25f12",
+    "revision": "66208baa1837f256e78e",
     "url": "/devs-quiz/static/css/2.27fdde94.chunk.css"
   },
   {
-    "revision": "42cac94135f8752c596e",
+    "revision": "9f5c8cdb994a41cee423",
     "url": "/devs-quiz/static/css/main.d1213297.chunk.css"
   },
   {
-    "revision": "80d84c8ed15179e25f12",
-    "url": "/devs-quiz/static/js/2.8a53dbe5.chunk.js"
+    "revision": "66208baa1837f256e78e",
+    "url": "/devs-quiz/static/js/2.be808229.chunk.js"
   },
   {
-    "revision": "42cac94135f8752c596e",
-    "url": "/devs-quiz/static/js/main.9f679b98.chunk.js"
+    "revision": "9f5c8cdb994a41cee423",
+    "url": "/devs-quiz/static/js/main.663a29be.chunk.js"
   },
   {
-    "revision": "811cab8f06918b1b52e9",
-    "url": "/devs-quiz/static/js/runtime-main.fd4e3b8b.js"
+    "revision": "d252cc1e9ba78432af13",
+    "url": "/devs-quiz/static/js/runtime-main.ffd3dd8b.js"
   },
   {
     "revision": "47c96ed0bee477e6be241ec750329736",
