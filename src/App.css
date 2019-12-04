@@ -1,9 +1,9 @@
 body, html, #root {
+  font-family: 'Cabin', sans-serif;
   height: 100%;
   width: 100%;
   margin: 0;
   padding: 0;
-  font-family: 'Cabin', sans-serif;
   min-height: 500px;
   overflow: hidden;
 }
