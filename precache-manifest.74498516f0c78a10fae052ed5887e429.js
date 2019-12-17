@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "28a557ccea7799cd05d8ec29124af53d",
+    "revision": "93ae71684d4a76b4655548c49bdf7418",
     "url": "/devs-quiz/index.html"
   },
   {
-    "revision": "4bef7509ed145dee7945",
+    "revision": "f9059a6fdfcd27697416",
     "url": "/devs-quiz/static/css/2.7eb4cc39.chunk.css"
   },
   {
-    "revision": "833c08f57b38d3327dbe",
+    "revision": "6fb0484ca8fb5c78079b",
     "url": "/devs-quiz/static/css/main.7b4dcb61.chunk.css"
   },
   {
-    "revision": "4bef7509ed145dee7945",
-    "url": "/devs-quiz/static/js/2.be808229.chunk.js"
+    "revision": "f9059a6fdfcd27697416",
+    "url": "/devs-quiz/static/js/2.2fe32e86.chunk.js"
   },
   {
-    "revision": "833c08f57b38d3327dbe",
-    "url": "/devs-quiz/static/js/main.663a29be.chunk.js"
+    "revision": "6fb0484ca8fb5c78079b",
+    "url": "/devs-quiz/static/js/main.4a590a46.chunk.js"
   },
   {
-    "revision": "d252cc1e9ba78432af13",
-    "url": "/devs-quiz/static/js/runtime-main.ffd3dd8b.js"
+    "revision": "18d930b9353c980974a1",
+    "url": "/devs-quiz/static/js/runtime-main.07253e2f.js"
   },
   {
     "revision": "47c96ed0bee477e6be241ec750329736",

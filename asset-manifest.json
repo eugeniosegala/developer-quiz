@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/devs-quiz/static/css/main.7b4dcb61.chunk.css",
-    "main.js": "/devs-quiz/static/js/main.663a29be.chunk.js",
-    "runtime-main.js": "/devs-quiz/static/js/runtime-main.ffd3dd8b.js",
+    "main.js": "/devs-quiz/static/js/main.4a590a46.chunk.js",
+    "runtime-main.js": "/devs-quiz/static/js/runtime-main.07253e2f.js",
     "static/css/2.7eb4cc39.chunk.css": "/devs-quiz/static/css/2.7eb4cc39.chunk.css",
-    "static/js/2.be808229.chunk.js": "/devs-quiz/static/js/2.be808229.chunk.js",
+    "static/js/2.2fe32e86.chunk.js": "/devs-quiz/static/js/2.2fe32e86.chunk.js",
     "index.html": "/devs-quiz/index.html",
-    "precache-manifest.a64d082a5b94a568627c355895eab043.js": "/devs-quiz/precache-manifest.a64d082a5b94a568627c355895eab043.js",
+    "precache-manifest.74498516f0c78a10fae052ed5887e429.js": "/devs-quiz/precache-manifest.74498516f0c78a10fae052ed5887e429.js",
     "service-worker.js": "/devs-quiz/service-worker.js",
     "static/media/01dffwqedaa.jpg": "/devs-quiz/static/media/01dffwqedaa.47c96ed0.jpg",
     "static/media/03dfeqfsvdfasd.jpg": "/devs-quiz/static/media/03dfeqfsvdfasd.ac572fb0.jpg",
@@ -40,10 +40,10 @@
     "static/media/win.gif": "/devs-quiz/static/media/win.128b5711.gif"
   },
   "entrypoints": [
-    "static/js/runtime-main.ffd3dd8b.js",
+    "static/js/runtime-main.07253e2f.js",
     "static/css/2.7eb4cc39.chunk.css",
-    "static/js/2.be808229.chunk.js",
+    "static/js/2.2fe32e86.chunk.js",
     "static/css/main.7b4dcb61.chunk.css",
-    "static/js/main.663a29be.chunk.js"
+    "static/js/main.4a590a46.chunk.js"
   ]
 }
